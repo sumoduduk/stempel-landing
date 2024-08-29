@@ -128,9 +128,9 @@ export const FooterSection = () => {
                 <Separator className='my-6' />
                 <section className=''>
                     <h3 className=''>
-                        &copy; 2024 Brought to you by
-                        <div className='text-primary transition-all border-primary hover:border-b-2 ml-1'>
-                            Stempel
+                        &copy; {new Date().getFullYear()} Brought to you by
+                        <div className='text-primary transition-all border-primary hover:border-b-2 ml-1 font-semibold'>
+                            Stempel Inc.
                         </div>
                     </h3>
                 </section>
