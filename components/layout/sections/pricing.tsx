@@ -1,10 +1,9 @@
-import { Check } from 'lucide-react';
+import { Check, X } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
 import {
     Card,
     CardContent,
-    CardDescription,
     CardFooter,
     CardHeader,
     CardTitle,
@@ -16,7 +15,7 @@ enum PopularPlan {
 }
 
 interface PlanProps {
-    title: string;
+    title: 'Free' | 'Premium Monthly' | 'Premium+ Annualy';
     popular: PopularPlan;
     price: number;
     buttonText: string;
@@ -28,40 +27,22 @@ const plans: PlanProps[] = [
         title: 'Free',
         popular: 0,
         price: 0,
-        buttonText: 'Start Free Trial',
-        benefitList: [
-            '1 team member',
-            '1 GB storage',
-            'Upto 2 pages',
-            'Community support',
-            'AI assistance',
-        ],
+        buttonText: 'Download',
+        benefitList: ['Batch Watermark', ' '],
     },
     {
-        title: 'Premium',
+        title: 'Premium Monthly',
         popular: 1,
-        price: 45,
-        buttonText: 'Get starterd',
-        benefitList: [
-            '4 team member',
-            '8 GB storage',
-            'Upto 6 pages',
-            'Priority support',
-            'AI assistance',
-        ],
+        price: 5,
+        buttonText: 'Buy Monthly License',
+        benefitList: ['Batch Watermark', 'Upto 1 device'],
     },
     {
-        title: 'Enterprise',
+        title: 'Premium+ Annualy',
         popular: 0,
-        price: 120,
-        buttonText: 'Contact US',
-        benefitList: [
-            '10 team member',
-            '20 GB storage',
-            'Upto 10 pages',
-            'Phone & email support',
-            'AI assistance',
-        ],
+        price: 32,
+        buttonText: 'Buy Annual License',
+        benefitList: ['Batch Watermark', 'Upto 3 device'],
     },
 ];
 
@@ -73,12 +54,10 @@ export const PricingSection = () => {
             </h2>
 
             <h2 className='text-3xl md:text-4xl text-center font-bold mb-4'>
-                Get unlimitted access
+                Choose Your Plan and Protect Your Images with Ease
             </h2>
 
-            <h3 className='md:w-1/2 mx-auto text-xl text-center text-muted-foreground pb-14'>
-                Lorem ipsum dolor sit amet consectetur adipisicing reiciendis.
-            </h3>
+            <hr className='md:w-1/2 mx-auto text-xl text-center text-muted-foreground pb-14' />
 
             <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-4'>
                 {plans.map(
@@ -87,29 +66,42 @@ export const PricingSection = () => {
                             key={title}
                             className={
                                 popular === PopularPlan?.YES
-                                    ? 'drop-shadow-xl shadow-black/10 dark:shadow-white/10 border-[1.5px] border-primary lg:scale-[1.1]'
-                                    : ''
+                                    ? 'drop-shadow-xl shadow-black/10 mx-8 dark:shadow-white/10 border-[1.5px] border-primary lg:scale-[1.1]'
+                                    : 'border-[1.5px] border-gray lg:scale-[1.1]'
                             }
                         >
                             <CardHeader>
                                 <CardTitle className='pb-2'>{title}</CardTitle>
 
                                 <div>
+                                    {title === 'Premium+ Annualy' && (
+                                        <span className='text-3xl text-muted-foreground font-semibold line-through mr-2'>
+                                            {' '}
+                                            $60{' '}
+                                        </span>
+                                    )}
                                     <span className='text-3xl font-bold'>
                                         ${price}
                                     </span>
                                     <span className='text-muted-foreground'>
-                                        {' '}
-                                        /month
+                                        {title === 'Premium+ Annualy'
+                                            ? '/year'
+                                            : '/month'}
                                     </span>
                                 </div>
                             </CardHeader>
 
-                            <CardContent className='flex'>
+                            <CardContent className='flex py-16'>
                                 <div className='space-y-4'>
                                     {benefitList.map((benefit) => (
                                         <span key={benefit} className='flex'>
-                                            <Check className='text-primary mr-2' />
+                                            {benefit.length < 2 ? (
+                                                <X className='text-red-500 mr-2 invisible' />
+                                            ) : title === 'Free' ? (
+                                                <X className='text-red-500 mr-2' />
+                                            ) : (
+                                                <Check className='text-primary mr-2' />
+                                            )}
                                             <h3>{benefit}</h3>
                                         </span>
                                     ))}
