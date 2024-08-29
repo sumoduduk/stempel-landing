@@ -5,6 +5,7 @@ import './globals.css';
 
 import { cn } from '@/lib/utils';
 import { Navbar } from '@/components/layout/navbar';
+import { FooterSection } from '@/components/layout/sections/footer';
 import { ThemeProvider } from '@/components/layout/theme-provider';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -31,6 +32,8 @@ export default function RootLayout({
                     <Navbar />
 
                     {children}
+
+                    <FooterSection />
                 </ThemeProvider>
             </body>
         </html>
