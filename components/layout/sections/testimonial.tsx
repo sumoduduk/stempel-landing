@@ -86,7 +86,7 @@ export const TestimonialSection = () => {
                     Testimonials
                 </h2>
 
-                <h2 className='text-xl md:text-2xl text-center font-bold mb-4'>
+                <h2 className='text-lg md:text-xl text-center font-bold mb-4'>
                     We're inviting you to be one of the very first to try our
                     new app. Write down your thoughts, and send us a feedback.
                     We'll make sure your story is seen by all.
